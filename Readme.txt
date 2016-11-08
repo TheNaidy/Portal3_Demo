@@ -1,1 +1,1 @@
-Team A sucks
+Team A sucks - that they do
