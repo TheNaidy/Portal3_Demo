@@ -1,3 +1,11 @@
-<p>
-  list works!
-</p>
+<table>
+  <tr>
+    <th *ngFor="let column of configuration.columns">{{column.headerText}}</th>
+  </tr>
+  <tr *ngFor="let row of data">
+    <td *ngFor="let column of configuration.columns" [ngSwitch]="column.command">
+      <span *ngSwitchCase="''">{{row[column.property]}}</span>
+      <a *ngSwitchDefault href="" (click)="commandClicked(row, column.command, $event);$event.stopPropagation();">{{row[column.property]}}</a>
+    </td>
+  </tr>
+</table>
