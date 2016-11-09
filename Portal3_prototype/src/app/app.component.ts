@@ -20,14 +20,22 @@ export class AppComponent {
     this.personListConfig.columns = [];
     this.personListConfig.columns.push(new ColumnConfiguration('First Name', 'firstName', 'string', 'name_clicked'));
     this.personListConfig.columns.push(new ColumnConfiguration('Surname', 'surname', 'string', ''));
-    this.personList = [{ firstName: 'toby', surname: 'mills' }, { firstName: 'Bilbo', surname: 'Baggins' }];
+    this.personListConfig.columns.push(new ColumnConfiguration('Species', 'species', 'string', 'species_clicked'));
+    this.personList = [
+      { firstName: 'Bilbo', surname: 'Baggins', species: 'Hobbit' },
+      { firstName: 'Gimli', surname: 'son of Glóin', species: 'Dwarf' },
+      { firstName: 'Elrond', surname: 'Half-Elvin', species: 'Elf' },
+    ];
   }
 
   public personClicked(event: ListRowClick) {
-     console.log(event.command);
-     console.log(event.row.firstName);
-     console.log(event.row.surname);
+    switch (event.command) {
+      case '': alert(event.row.firstName + ' ' + event.row.surname + ' is a ' + event.row.species);
+      break;
+      case 'name_clicked': alert(event.row.firstName + "'s surname is " + event.row.surname);
+      break;
+      case 'species_clicked': alert(event.row.firstName + ' is a ' + event.row.species);
+      break;
+    }
   }
-
-  public test() { }
 }

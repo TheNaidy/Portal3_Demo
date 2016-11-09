@@ -19,9 +19,13 @@ export class ListComponent implements OnInit {
   ngOnInit() {
   }
 
-  commandClicked(row: any, command: string, event: any) {
+  commandClick(row: any, command: string, event: any) {
     // this.rowClicked.emit({ command: command, row: row });
     event.preventDefault();
     this.rowClicked.emit(new ListRowClick(command, row));
+  }
+
+  rowClick(row: any, event: any){
+    this.rowClicked.emit(new ListRowClick('', row));
   }
 }
