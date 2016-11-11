@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ListConfiguration } from '././list-configuration';
 import { ColumnConfiguration } from '././column-configuration';
 import { ListRowClick } from './list-row-click';
+import { FilterComponent } from './filter/filter.component';
 
 @Component({
   selector: 'app-root',
