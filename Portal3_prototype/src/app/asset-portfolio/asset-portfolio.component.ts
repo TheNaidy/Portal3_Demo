@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import {AssetModel} from '../models/asset.model';
+import {Filter} from '../shared/filter'
+import { ListConfiguration} from '../list-configuration';
+import { ConfigurationService } from '../services/configuration.service'
+import { PageConfiguration } from '../shared/pageConfiguration'
 
 @Component({
   selector: 'app-asset-portfolio',
@@ -7,9 +12,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssetPortfolioComponent implements OnInit {
 
-  constructor() { }
+  // AssetList: Array<AssetModel>;
+  // @Input() SavedSearch: any;
+  // @Input() Filters: Array<Filter>;
+  // @Input() Config: ListConfiguration;
+  pageConfiguration: PageConfiguration;
+
+  constructor(public _configurationService:ConfigurationService) { 
+    
+  }
 
   ngOnInit() {
+    this.pageConfiguration=this._configurationService.GetPageConfiguration(1);
   }
 
 }
