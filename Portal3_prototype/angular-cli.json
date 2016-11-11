@@ -18,7 +18,10 @@
             "./css/default.min.css",
             "./css/default.min(1).css"
         ],
-        "scripts": [],
+        "scripts": [
+            "../node_modules/jquery/dist/jquery.min.js",
+            "../node_modules/bootstrap/dist/js/bootstrap.min.js"
+        ],
         "environments": {
             "source": "environments/environment.ts",
             "prod": "environments/environment.prod.ts",
