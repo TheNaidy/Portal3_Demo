@@ -1,7 +1,7 @@
 <div class="page-wrap page-internal">
 	<app-header></app-header>
 	<br/>
-    <app-list [configuration]="personListConfig" [data]="personList" (rowClicked)="personClicked($event)"></app-list>
+    <app-list [configuration]="personListConfig" [data]="personList" (rowClicked)="personClicked($event)" [term]="term"></app-list>
     <br/>
 	<app-filter></app-filter>
 </div>

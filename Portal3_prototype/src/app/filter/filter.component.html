@@ -26,7 +26,8 @@
                     </div>
 
                     <div class="search-input">
-                        <input type="text" class="form-control" placeholder="Search licenses">
+                        <filterbox (update)="term = $event"></filterbox>
+                        <!--<input #input type="text" class="form-control" placeholder="Search licenses" (input)="update.emit(input.value)">*/-->
                         <button type="submit" class="nofocus"></button>
                         <button type="button" class="nofocus"></button>
                     </div>
@@ -46,9 +47,7 @@
                     </div>
                 </div>
 
-
-
-
+<!--<filterbox (update)="term = $event"></filterbox>
 
 <h2> Licenses </h2>
 <div>{{title}}</div>
@@ -57,6 +56,7 @@
 <input type='text' ng-model="applyfilter">
 </p>
 
+
 <ul>
     <li *ngFor="#license of licenses"> 
         {{ license }}
@@ -64,4 +64,4 @@
 </ul>
 
 
- <!--| filter:applyfilter"-->
+ | filter:applyfilter"-->

@@ -1,11 +1,12 @@
-import {Injectable, Pipe} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-    name: 'myfilter'
+    name: 'filterpipe',
+    pure: false
 })
-@Injectable()
+
 export class FilterPipe implements PipeTransform {
-    transform(items: any[], args: any[]): any {
-        return items.filter(item => item.id.indexOf(args[0]) !== -1);
+    transform(value: any, [term]): string {
+        return value.filter((data) => data.firstName.startsWith(term));
     }
 }

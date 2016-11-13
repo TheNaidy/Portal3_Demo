@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ListConfiguration } from '././list-configuration';
 import { ColumnConfiguration } from '././column-configuration';
 import { ListRowClick } from './list-row-click';
-import { FilterComponent } from './filter/filter.component';
 
 @Component({
   selector: 'app-root',
@@ -32,7 +31,7 @@ export class AppComponent {
     switch (event.command) {
       case '': alert(event.row.firstName + ' ' + event.row.surname + ' is a ' + event.row.species);
       break;
-      case 'name_clicked': alert(event.row.firstName + "'s surname is " + event.row.surname);
+      case 'name_clicked': alert(event.row.firstName + ' s surname is ' + event.row.surname);
       break;
       case 'species_clicked': alert(event.row.firstName + ' is a ' + event.row.species);
       break;
