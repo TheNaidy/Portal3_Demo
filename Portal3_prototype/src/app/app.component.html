@@ -1,19 +1,10 @@
 <div class="page-wrap page-internal">
-<<<<<<< HEAD
-	<app-header></app-header>
-    <br/>
-	<app-filter></app-filter>
-	<br/>
-    <app-list [configuration]="personListConfig" [data]="personList" (rowClicked)="assetClicked($event)" [term]="term"></app-list>
-=======
     <app-header></app-header>
     <br/>
-
     <div class="container">
         <app-filter></app-filter>
         <app-list [configuration]="personListConfig" [data]="personList" (rowClicked)="personClicked($event)" [term]="term"></app-list>
     </div>
 	
     <br/>
->>>>>>> origin/master
 </div>
