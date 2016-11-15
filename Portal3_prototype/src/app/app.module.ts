@@ -9,7 +9,9 @@ import { AssetDetailsComponent } from './asset-details/asset-details.component';
 import { ListComponent } from './list/list.component';
 import { FilterComponent } from './filter/filter.component';
 import { HeaderComponent } from './header/header.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component'
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+
+import { LicenseService } from './services/license.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component'
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [LicenseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

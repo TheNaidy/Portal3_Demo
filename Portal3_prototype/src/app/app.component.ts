@@ -27,13 +27,11 @@ export class AppComponent {
     ];
   }
 
-  public personClicked(event: ListRowClick) {
+  public assetClicked(event: ListRowClick) {
     switch (event.command) {
-      case '': alert(event.row.firstName + ' ' + event.row.surname + ' is a ' + event.row.species);
+      case '': alert(event.row.Code + 'row clicked');
       break;
-      case 'name_clicked': alert(event.row.firstName + ' s surname is ' + event.row.surname);
-      break;
-      case 'species_clicked': alert(event.row.firstName + ' is a ' + event.row.species);
+      case 'name_clicked': alert(event.row.Name + ' clicked');
       break;
     }
   }
