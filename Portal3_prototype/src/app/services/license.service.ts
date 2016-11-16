@@ -28,13 +28,14 @@ export class LicenseService {
     });
   }
 
-  getLicensesBySearch(licenseSearchID: any) {
+  getLicensesBySearch(licenseSearchID: any): Observable<AssetSearchModel[]> {
     console.log('getLicensesBySearch');
-    let licensesearchURL = this.baseURL + '/licensesearch/' + licenseSearchID;
-    return Promise.resolve(this._http.get(licensesearchURL, this.options));
+    
+     let licensesearchURL = this.baseURL + '/licensesearch/' + licenseSearchID;
+    // return Promise.resolve(this._http.get(licensesearchURL, this.options));
 
-    //    return this._http.get(licensesearchURL, this.options)
-    //      .map(res => res.json());
+       return this._http.get(licensesearchURL, this.options)
+         .map(res => res.json());
   }
 
   getLicense(licenseID: any): Observable<AssetModel> {
