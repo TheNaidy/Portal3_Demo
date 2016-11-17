@@ -3,7 +3,7 @@ import {AssetModel} from '../models/asset.model';
 import {Filter} from '../shared/filter'
 import { ListConfiguration} from '../list-configuration';
 import { ConfigurationService } from '../services/configuration.service'
-import { PageConfiguration } from '../shared/pageConfiguration'
+import { PageConfiguration } from '../shared/page-configuration'
 
 @Component({
   selector: 'app-asset-portfolio',
