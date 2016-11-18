@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import{ ListConfiguration } from '../list-configuration';
-import { ColumnConfiguration } from '../column-configuration'
-import { PageConfiguration } from '../shared/pageConfiguration'
+import { ColumnConfiguration } from '../column-configuration';
+import { PageConfiguration } from '../shared/page-configuration';
 
 @Injectable()
 export class ConfigurationService {
