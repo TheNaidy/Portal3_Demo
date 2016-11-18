@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 import { LicenseService } from './services/license.service';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LicenseService } from './services/license.service';
     FilterableListComponent,
     FilterComponent,
     HeaderComponent,
-    NavBarComponent
+    NavBarComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,

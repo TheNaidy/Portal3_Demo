@@ -5,6 +5,7 @@ import { ListConfiguration} from '../list-configuration';
 import { ConfigurationService } from '../services/configuration.service';
 import { PageConfiguration } from '../shared/page-configuration';
 import { FilterComponent } from '../filter/filter.component';
+import { FilterableListComponent } from '../filterable-list/filterable-list.component';
 
 @Component({
   selector: 'app-asset-portfolio',
@@ -17,6 +18,7 @@ export class AssetPortfolioComponent implements OnInit {
   // @Input() SavedSearch: any;
   // @Input() Filters: Array<Filter>;
   // @Input() Config: ListConfiguration;
+
   pageConfiguration: PageConfiguration;
 
   constructor(public _configurationService:ConfigurationService) { 
