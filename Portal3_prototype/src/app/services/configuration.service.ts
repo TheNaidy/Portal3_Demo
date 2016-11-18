@@ -18,11 +18,12 @@ export class ConfigurationService {
 
      this.pageConfiguration.ListConfiguration = new ListConfiguration();
      this.pageConfiguration.ListConfiguration.columns = [];
-     this.pageConfiguration.ListConfiguration.columns.push(new ColumnConfiguration('Code', 'code', 'string', 'code_clicked'));
-     this.pageConfiguration.ListConfiguration.columns.push(new ColumnConfiguration('Name', 'name', 'string', ''));
-     this.pageConfiguration.ListConfiguration.columns.push(new ColumnConfiguration('Status', 'status', 'string', ''));
+     this.pageConfiguration.ListConfiguration.columns.push(new ColumnConfiguration('Code', 'Code', 'string', 'code_clicked'));
+     this.pageConfiguration.ListConfiguration.columns.push(new ColumnConfiguration('Name', 'Name', 'string', ''));
+     this.pageConfiguration.ListConfiguration.columns.push(new ColumnConfiguration('Status', 'Status', 'string', ''));
 
-     return this.pageConfiguration;
+     return this.pageConfiguration;   
+
    }
 
 }

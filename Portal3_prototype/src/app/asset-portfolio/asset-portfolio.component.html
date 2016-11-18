@@ -1,3 +1,3 @@
 <p>
-  <app-filterable-list></app-filterable-list>
+  <app-filterable-list [configuration]="listConfiguration" [data]="data" (rowClicked)="assetClicked($event)"></app-filterable-list>
 </p>

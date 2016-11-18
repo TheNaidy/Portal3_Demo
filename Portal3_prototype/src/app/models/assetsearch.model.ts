@@ -1,8 +1,8 @@
 export class AssetSearchModel{
     
-    id:string;
-    name:string;
-    code:string;
-    status:string;
+    ID:string;
+    Name:string;
+    Code:string;
+    Status:string;
     
 }

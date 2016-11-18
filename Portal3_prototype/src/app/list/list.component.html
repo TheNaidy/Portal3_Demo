@@ -1,4 +1,5 @@
-<div class="table-responsive" style="overflow: visible">
+<div *ngIf="configuration" class="table-responsive" style="overflow: visible">
+    
     <table class="table borderless-first-row">
         <tr>
             <th *ngFor="let column of configuration.columns">{{column.headerText}}</th>

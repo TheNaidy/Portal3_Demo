@@ -14,6 +14,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 import { LicenseService } from './services/license.service';
 import { MapComponent } from './map/map.component';
+import { ConfigurationService } from './services/configuration.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { MapComponent } from './map/map.component';
     FormsModule,
     HttpModule
   ],
-  providers: [LicenseService],
+  providers: [LicenseService, ConfigurationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

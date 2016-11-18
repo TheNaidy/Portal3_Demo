@@ -22,7 +22,7 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
-
+/*
     this.configuration = new ListConfiguration();
     this.configuration.columns = [];
     this.configuration.columns.push(new ColumnConfiguration('Status', 'Status', 'string', ''));
@@ -33,7 +33,8 @@ export class ListComponent implements OnInit {
       .subscribe(data => {
         this.data = data;
       });
-
+*/
+    
   }
 
   commandClick(row: any, command: string, event: any) {
