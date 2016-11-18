@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {AssetModel} from '../models/asset.model';
-import {Filter} from '../shared/filter'
+import { AssetModel } from '../models/asset.model';
+import { Filter } from '../shared/filter'
 import { ListConfiguration} from '../list-configuration';
-import { ConfigurationService } from '../services/configuration.service'
-import { PageConfiguration } from '../shared/page-configuration'
+import { ConfigurationService } from '../services/configuration.service';
+import { PageConfiguration } from '../shared/page-configuration';
+import { FilterComponent } from '../filter/filter.component';
 
 @Component({
   selector: 'app-asset-portfolio',
