@@ -20,4 +20,8 @@ export class FilterableListComponent implements OnInit {
   public rowClick(event: any) {
     this.rowClicked.emit(event);
   }
+
+  public onFilterTexChange(searchString: string){
+console.log('yup')
+  }
 }

@@ -26,7 +26,7 @@
                     </div>
 
                     <div class="search-input">
-                        <filterbox (update)="term = $event"></filterbox>
+                        <app-filterbox (update)="onFilterTextChange($event.value)"></app-filterbox>
                         <!--<input #input type="text" class="form-control" placeholder="Search licenses" (input)="update.emit(input.value)">*/-->
                         <button type="submit" class="nofocus"></button>
                         <button type="button" class="nofocus"></button>

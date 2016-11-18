@@ -1,2 +1,2 @@
-<app-filter></app-filter>
+<app-filter (filterTextChanged)="onFilterTexChange($event.value)"></app-filter>
 <app-list [data]="data" [configuration]="configuration" (rowClicked)="rowClick($event)"></app-list>

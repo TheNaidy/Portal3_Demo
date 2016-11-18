@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FilterBox } from './filter.box';
+import { FilterBoxComponent } from './filter.box';
 import { FilterPipe } from './filter.pipe';
 import { FilterService } from './filter.service';
 
@@ -7,15 +7,16 @@ import { FilterService } from './filter.service';
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.css'],
-  directives: [ FilterBox ],
-  providers: [ FilterService ],
-  pipes: [ FilterPipe]
+  directives: [FilterBoxComponent],
+  providers: [FilterService],
+  pipes: [FilterPipe]
 })
 export class FilterComponent implements OnInit {
-   title = 'Testing Licenses';
-   licenses: string[];
+  @Output() filterTextChanged: EventEmitter<any> = new EventEmitter<any>();
+  title = 'Testing Licenses';
+  licenses: string[];
 
- constructor(filterService: FilterService) {
+  constructor(filterService: FilterService) {
     this.licenses = filterService.getLicenses();
   }
 
@@ -23,4 +24,7 @@ export class FilterComponent implements OnInit {
 
   }
 
+  public onFilterTextChange(searchString: string) {
+    this.filterTextChanged.emit({ value: searchString });
+  }
 }

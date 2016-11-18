@@ -1,16 +1,20 @@
-import { Component, Output, EventEmitter} from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
-    selector: 'filterbox',
+    selector: 'app-filterbox',
     template: `
-            <input #input type="text" class="form-control" placeholder="Search licenses" (input)="update.emit(input.value)">
+            <input #input type="text" class="form-control" placeholder="Search licenses" (keyup)="keyPressed(input.value)">
     `
 })
-export class FilterBox {
+export class FilterBoxComponent {
     @Output() update = new EventEmitter();
 
 
     ngOnInIt() {
         this.update.emit('');
+    }
+
+    public keyPressed(searchString: string) {
+        this.update.emit({ value: searchString });
     }
 }
