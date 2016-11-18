@@ -2,8 +2,7 @@
     <app-header></app-header>
     <br/>
     <div class="container">
-        <app-filter></app-filter>
-        <app-list [configuration]="personListConfig" [data]="personList" (rowClicked)="assetClicked($event)" [term]="term"></app-list>
+        <app-filterable-list [configuration]="personListConfig" [data]="personList" (rowClicked)="assetClicked($event)"></app-filterable-list>
     </div>
 	
     <br/>

@@ -16,7 +16,6 @@ export class ListComponent implements OnInit {
   @Input() configuration: ListConfiguration;
   @Input() data: Array<AssetSearchModel>;
   @Output() rowClicked: EventEmitter<ListRowClick> = new EventEmitter<ListRowClick>();
-  @Input() term;
 
   constructor(private licenseService: LicenseService) {
 
@@ -29,14 +28,6 @@ export class ListComponent implements OnInit {
     this.configuration.columns.push(new ColumnConfiguration('Status', 'Status', 'string', ''));
     this.configuration.columns.push(new ColumnConfiguration('Code', 'Code', 'string', ''));
     this.configuration.columns.push(new ColumnConfiguration('Name', 'Name', 'string', 'name_clicked'));
-
-    // this.licenseService.getLicensesBySearch('be746ef0-a17d-4f2b-ac3e-1f642ba9961e').then( observable => {
-    //   console.log('observable');
-    //   observable.subscribe(response => {
-    //     console.log(response.json());
-    //     this.data = response.json();
-    //   });
-    // });
 
     this.licenseService.getLicensesBySearch('be746ef0-a17d-4f2b-ac3e-1f642ba9961e')
       .subscribe(data => {
