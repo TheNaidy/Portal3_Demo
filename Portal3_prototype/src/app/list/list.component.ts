@@ -1,10 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { ListConfiguration } from '../list-configuration';
 import { ListRowClick } from '../list-row-click';
 import { FilterPipe } from '../filter/filter.pipe';
 import { LicenseService } from '../services/license.service';
 import { ColumnConfiguration } from '../column-configuration';
-import { AssetSearchModel } from '../models/assetsearch.model';
 
 @Component({
   selector: 'app-list',
@@ -12,29 +11,25 @@ import { AssetSearchModel } from '../models/assetsearch.model';
   styleUrls: ['./list.component.css'],
   pipes: [FilterPipe]
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnChanges {
   @Input() configuration: ListConfiguration;
-  @Input() data: Array<AssetSearchModel>;
+  @Input() data: Array<any>;
   @Output() rowClicked: EventEmitter<ListRowClick> = new EventEmitter<ListRowClick>();
+
+  private sortDirection: number = -1;
 
   constructor(private licenseService: LicenseService) {
 
   }
 
-  ngOnInit() {
-/*
-    this.configuration = new ListConfiguration();
-    this.configuration.columns = [];
-    this.configuration.columns.push(new ColumnConfiguration('Status', 'Status', 'string', ''));
-    this.configuration.columns.push(new ColumnConfiguration('Code', 'Code', 'string', ''));
-    this.configuration.columns.push(new ColumnConfiguration('Name', 'Name', 'string', 'name_clicked'));
-
-    this.licenseService.getLicensesBySearch('be746ef0-a17d-4f2b-ac3e-1f642ba9961e')
-      .subscribe(data => {
-        this.data = data;
-      });
-*/
-    
+  ngOnChanges(changes: SimpleChanges) {
+    for (let propName in changes) {
+      if (propName === 'data') {
+        if (changes['data'].currentValue) {
+            this.sortData(this.configuration.sortProperty);
+        }
+      }
+    }
   }
 
   commandClick(row: any, command: string, event: any) {
@@ -45,5 +40,28 @@ export class ListComponent implements OnInit {
 
   rowClick(row: any, event: any) {
     this.rowClicked.emit(new ListRowClick('', row));
+  }
+
+  headerClick(column: ColumnConfiguration) {
+    this.sortData(column.property);
+  }
+
+  private sortData(property: string) {
+    if (this.configuration.sortProperty === property) {
+      this.sortDirection *= -1;
+    } else {
+      this.configuration.sortProperty = property;
+      this.sortDirection = 1;
+    }
+
+    this.data.sort((rowA, rowB) => {
+      if (rowA[this.configuration.sortProperty] < rowB[this.configuration.sortProperty]) {
+        return -1 * this.sortDirection;
+      }
+      if (rowA[this.configuration.sortProperty] > rowB[this.configuration.sortProperty]) {
+        return 1 * this.sortDirection;
+      }
+      return 0;
+    });
   }
 }
