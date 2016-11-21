@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ListConfiguration } from '../list-configuration';
 import { ListRowClick } from '../list-row-click';
-import { AssetSearchModel } from '../models/assetsearch.model';
+import { AssetModel } from '../models/asset.model';
 
 @Component({
   selector: 'app-filterable-list',
@@ -10,7 +10,7 @@ import { AssetSearchModel } from '../models/assetsearch.model';
 })
 export class FilterableListComponent implements OnInit {
   @Input() configuration: ListConfiguration;
-  @Input() data: Array<AssetSearchModel>;
+  @Input() data: Array<AssetModel>;
   @Output() rowClicked: EventEmitter<ListRowClick> = new EventEmitter<ListRowClick>();
   constructor() { }
 

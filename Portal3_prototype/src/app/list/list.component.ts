@@ -4,7 +4,7 @@ import { ListRowClick } from '../list-row-click';
 import { FilterPipe } from '../filter/filter.pipe';
 import { LicenseService } from '../services/license.service';
 import { ColumnConfiguration } from '../column-configuration';
-import { AssetSearchModel } from '../models/assetsearch.model';
+import { AssetModel } from '../models/asset.model';
 
 @Component({
   selector: 'app-list',
@@ -14,7 +14,7 @@ import { AssetSearchModel } from '../models/assetsearch.model';
 })
 export class ListComponent implements OnInit {
   @Input() configuration: ListConfiguration;
-  @Input() data: Array<AssetSearchModel>;
+  @Input() data: Array<AssetModel>;
   @Output() rowClicked: EventEmitter<ListRowClick> = new EventEmitter<ListRowClick>();
 
   constructor(private licenseService: LicenseService) {

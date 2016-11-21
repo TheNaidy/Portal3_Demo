@@ -3,7 +3,6 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/rx';
 import 'rxjs/add/operator/map';
 import { environment } from '../../environments/environment';
-import { AssetSearchModel } from '../models/assetsearch.model';
 import { AssetModel } from '../models/asset.model';
 
 @Injectable()
@@ -28,14 +27,13 @@ export class LicenseService {
     });
   }
 
-  getLicensesBySearch(licenseSearchID: any): Observable<AssetSearchModel[]> {
+  getLicensesBySearch(licenseSearchID: any): Observable<AssetModel[]> {
     console.log('getLicensesBySearch');
-    
-     let licensesearchURL = this.baseURL + '/licensesearch/' + licenseSearchID;
-    // return Promise.resolve(this._http.get(licensesearchURL, this.options));
 
-       return this._http.get(licensesearchURL, this.options)
-         .map(res => res.json());
+    let licensesearchURL = this.baseURL + '/licenses/executesearch';
+
+    return this._http.post(licensesearchURL, "", this.options)
+      .map(res => res.json());
   }
 
   getLicense(licenseID: any): Observable<AssetModel> {
