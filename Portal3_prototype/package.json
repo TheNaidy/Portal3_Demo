@@ -40,6 +40,7 @@
         "ts-node": "1.2.1",
         "tslint": "3.13.0",
         "typescript": "2.0.0",
+        "awesome-typescript-loader": "2.2.1",
         "bootstrap": "3.3.7",
         "jquery": "3.1.1"
     }
