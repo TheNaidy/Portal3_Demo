@@ -7,7 +7,6 @@ import { PageConfiguration } from '../shared/page-configuration';
 import { FilterComponent } from '../filter/filter.component';
 import { FilterableListComponent } from '../filterable-list/filterable-list.component';
 import { LicenseService } from '../services/license.service';
-import { AssetSearchModel } from '../models/assetsearch.model';
 import { ListRowClick } from '../list-row-click';
 
 @Component({
@@ -24,7 +23,7 @@ export class AssetPortfolioComponent implements OnInit {
   FilterableList: FilterableListComponent;
   listConfiguration: ListConfiguration;
   pageConfiguration: PageConfiguration;
-  data: Array<AssetSearchModel>;
+  data: Array<AssetModel>;
   constructor(public _configurationService:ConfigurationService, private _licenseService: LicenseService) { 
     
   }

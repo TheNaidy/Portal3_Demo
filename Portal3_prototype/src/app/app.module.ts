@@ -15,6 +15,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LicenseService } from './services/license.service';
 import { MapComponent } from './map/map.component';
 import { ConfigurationService } from './services/configuration.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ConfigurationService } from './services/configuration.service';
     FilterComponent,
     HeaderComponent,
     NavBarComponent,
-    MapComponent
+    MapComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
