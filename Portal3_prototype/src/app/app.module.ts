@@ -16,6 +16,7 @@ import { LicenseService } from './services/license.service';
 import { MapComponent } from './map/map.component';
 import { ConfigurationService } from './services/configuration.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ListFormatPipe } from './list/list-format.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HeaderComponent,
     NavBarComponent,
     MapComponent,
-    DashboardComponent
+    DashboardComponent,
+    ListFormatPipe,
+    ListFormatPipe
   ],
   imports: [
     BrowserModule,
