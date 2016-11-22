@@ -4,6 +4,7 @@ import { ListRowClick } from '../list-row-click';
 import { FilterPipe } from '../filter/filter.pipe';
 import { LicenseService } from '../services/license.service';
 import { ColumnConfiguration } from '../column-configuration';
+import { Attribute } from '../models/attribute';
 
 @Component({
   selector: 'app-list',
@@ -26,7 +27,7 @@ export class ListComponent implements OnChanges {
     for (let propName in changes) {
       if (propName === 'data') {
         if (changes['data'].currentValue) {
-            this.sortData(this.configuration.sortProperty);
+            this.sortData(this.configuration.sortAttribute);
         }
       }
     }
@@ -43,22 +44,22 @@ export class ListComponent implements OnChanges {
   }
 
   headerClick(column: ColumnConfiguration) {
-    this.sortData(column.property);
+    this.sortData(column.attribute);
   }
 
-  private sortData(property: string) {
-    if (this.configuration.sortProperty === property) {
+  private sortData(sortAttribute: Attribute) {
+    if (this.configuration.sortAttribute === sortAttribute) {
       this.sortDirection *= -1;
     } else {
-      this.configuration.sortProperty = property;
+      this.configuration.sortAttribute = sortAttribute;
       this.sortDirection = 1;
     }
 
     this.data.sort((rowA, rowB) => {
-      if (rowA[this.configuration.sortProperty] < rowB[this.configuration.sortProperty]) {
+      if (rowA[this.configuration.sortAttribute.name] < rowB[this.configuration.sortAttribute.name]) {
         return -1 * this.sortDirection;
       }
-      if (rowA[this.configuration.sortProperty] > rowB[this.configuration.sortProperty]) {
+      if (rowA[this.configuration.sortAttribute.name] > rowB[this.configuration.sortAttribute.name]) {
         return 1 * this.sortDirection;
       }
       return 0;

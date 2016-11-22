@@ -1,17 +1,18 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { DataType } from '../models/attribute';
 
 @Pipe({
   name: 'listFormat'
 })
 export class ListFormatPipe implements PipeTransform {
 
-  transform(value: any, dataType: string): string {
+  transform(value: any, dataType: DataType): string {
     let formatted: string;
 
-    switch (dataType) {
-      case 'string': formatted = value;
+   switch (dataType) {
+      case DataType.string: formatted = value;
         break;
-      case 'date': formatted = value.substring(0, 10);
+      case DataType.date: formatted = value.substring(0, 10);
         break;
     }
     return formatted;

@@ -11,7 +11,7 @@ export class FilterPipe implements PipeTransform {
         return value.filter((data) => {
             let match: boolean = false;
             for (let i = 0, len = listConfig.columns.length; i < len; i++) {
-                if (data[listConfig.columns[i].property].startsWith(term)) { match = true; }
+                if (data[listConfig.columns[i].attribute.name].startsWith(term)) { match = true; }
             }
             return match;
         });

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ListConfiguration } from '../list-configuration';
 import { ColumnConfiguration } from '../column-configuration';
 import { PageConfiguration } from '../shared/page-configuration';
-import { AssetModelAttribute } from '../models/asset.model';
+import { AssetAttributes } from '../models/asset.model';
 
 @Injectable()
 export class ConfigurationService {
@@ -20,19 +20,25 @@ export class ConfigurationService {
     this.pageConfiguration.ListConfiguration = new ListConfiguration();
     this.pageConfiguration.ListConfiguration.columns = [];
     this.pageConfiguration.ListConfiguration.columns.push(
-      new ColumnConfiguration('Code', AssetModelAttribute[AssetModelAttribute.code], 'string', 'code_clicked')
+      new ColumnConfiguration('Code', AssetAttributes.code, 'code_clicked')
     );
     this.pageConfiguration.ListConfiguration.columns.push(
-      new ColumnConfiguration('Name', AssetModelAttribute[AssetModelAttribute.name], 'string', '')
+      new ColumnConfiguration('Name', AssetAttributes.assetName, '')
     );
     this.pageConfiguration.ListConfiguration.columns.push(
-      new ColumnConfiguration('Status', AssetModelAttribute[AssetModelAttribute.status], 'string', '')
+      new ColumnConfiguration('Status', AssetAttributes.status, '')
     );
     this.pageConfiguration.ListConfiguration.columns.push(
-      new ColumnConfiguration('Applied', AssetModelAttribute[AssetModelAttribute.dateApplication], 'date', '')
+      new ColumnConfiguration('Applied', AssetAttributes.dateApplication, '')
+    );
+    this.pageConfiguration.ListConfiguration.columns.push(
+      new ColumnConfiguration('Granted', AssetAttributes.dateGranted, '')
+    );
+        this.pageConfiguration.ListConfiguration.columns.push(
+      new ColumnConfiguration('Expires', AssetAttributes.dateExpired, '')
     );
 
-    this.pageConfiguration.ListConfiguration.sortProperty = AssetModelAttribute[AssetModelAttribute.code];
+    this.pageConfiguration.ListConfiguration.sortAttribute = AssetAttributes.code;
 
     return this.pageConfiguration;
 
