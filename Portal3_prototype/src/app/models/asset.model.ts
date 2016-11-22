@@ -1,6 +1,6 @@
 export enum AssetModelAttribute {
-    id, 
-    name, 
+    id,
+    name,
     code,
     status,
     type,
@@ -13,22 +13,22 @@ export enum AssetModelAttribute {
     officialAreaUnit
 };
 
-export class AssetModel{
+export class AssetModel {
 
-    id:string;
-    name:string;
-    code:string;
-    status:string;
-    type:string;
+    id: string;
+    name: string;
+    code: string;
+    status: string;
+    type: string;
 
-    dateApplication:Date;
-    dateGranted:Date;
-    dateExpired:Date;
+    dateApplication: Date;
+    dateGranted: Date;
+    dateExpired: Date;
 
-    commodities:string;
-    parties:string;
+    commodities: string;
+    parties: string;
 
-    officialArea:number;
-    officialAreaUnit:string;
+    officialArea: number;
+    officialAreaUnit: string;
 
 }

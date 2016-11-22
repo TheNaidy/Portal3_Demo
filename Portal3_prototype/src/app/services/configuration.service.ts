@@ -17,14 +17,22 @@ export class ConfigurationService {
     this.pageConfiguration = new PageConfiguration();
     this.pageConfiguration.SavedSearch = 'FCCD63CE-ECE5-4722-B720-AB23349CEFAC';
 
-     this.pageConfiguration.ListConfiguration = new ListConfiguration();
-     this.pageConfiguration.ListConfiguration.columns = [];
-     this.pageConfiguration.ListConfiguration.columns.push(new ColumnConfiguration('Code', AssetModelAttribute[AssetModelAttribute.code], 'string', 'code_clicked'));
-     this.pageConfiguration.ListConfiguration.columns.push(new ColumnConfiguration('Name', AssetModelAttribute[AssetModelAttribute.name], 'string', ''));
-     this.pageConfiguration.ListConfiguration.columns.push(new ColumnConfiguration('Status', AssetModelAttribute[AssetModelAttribute.status], 'string', ''));
+    this.pageConfiguration.ListConfiguration = new ListConfiguration();
+    this.pageConfiguration.ListConfiguration.columns = [];
+    this.pageConfiguration.ListConfiguration.columns.push(
+      new ColumnConfiguration('Code', AssetModelAttribute[AssetModelAttribute.code], 'string', 'code_clicked')
+    );
+    this.pageConfiguration.ListConfiguration.columns.push(
+      new ColumnConfiguration('Name', AssetModelAttribute[AssetModelAttribute.name], 'string', '')
+    );
+    this.pageConfiguration.ListConfiguration.columns.push(
+      new ColumnConfiguration('Status', AssetModelAttribute[AssetModelAttribute.status], 'string', '')
+    );
+    this.pageConfiguration.ListConfiguration.columns.push(
+      new ColumnConfiguration('Applied', AssetModelAttribute[AssetModelAttribute.dateApplication], 'date', '')
+    );
 
     this.pageConfiguration.ListConfiguration.sortProperty = AssetModelAttribute[AssetModelAttribute.code];
-
 
     return this.pageConfiguration;
 
