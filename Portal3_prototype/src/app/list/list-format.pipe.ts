@@ -11,7 +11,7 @@ export class ListFormatPipe implements PipeTransform {
     switch (dataType) {
       case 'string': formatted = value;
         break;
-      case 'date': formatted = value.toISOString().substring(0, 10);
+      case 'date': formatted = value.substring(0, 10);
         break;
     }
     return formatted;
