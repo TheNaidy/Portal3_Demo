@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/rx';
 import 'rxjs/add/operator/map';
 import { environment } from '../../environments/environment';
-import { AssetModel } from '../models/asset.model';
+import { AssetModel, AssetAttributes } from '../models/asset.model';
+import { LoaderService } from '././loader.service';
 
 @Injectable()
 export class LicenseService {
@@ -12,7 +13,7 @@ export class LicenseService {
   private headers: Headers;
   private options: RequestOptions;
 
-  constructor(public _http: Http) {
+  constructor (public _http: Http, public loaderService: LoaderService) {
     if (environment.production) {
       this.baseURL = location.host + location.pathname + 'api';
     } else {
@@ -27,13 +28,21 @@ export class LicenseService {
     });
   }
 
-  getLicensesBySearch(licenseSearchID: any): Observable<AssetModel[]> {
-    console.log('getLicensesBySearch');
+  public getLicensesBySearch(licenseSearchID: any): Observable<AssetModel[]> {
 
     let licensesearchURL = this.baseURL + '/licenses/executesearch';
+    let self = this;
 
-    return this._http.post(licensesearchURL, "", this.options)
-      .map(res => res.json());
+    return this._http.post(licensesearchURL, '', this.options)
+      .map(res => {
+        let data = res.json();
+        data.map(function (license: AssetModel) {
+          self.loaderService.loadDataModel(license, AssetAttributes);
+          return license;
+        });
+        console.log(data);
+        return data;
+      });
   }
 
   getLicense(licenseID: any): Observable<AssetModel> {
