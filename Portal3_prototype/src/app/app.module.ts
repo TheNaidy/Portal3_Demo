@@ -15,6 +15,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LicenseService } from './services/license.service';
 import { MapComponent } from './map/map.component';
 import { ConfigurationService } from './services/configuration.service';
+import { LoaderService } from './services/loader.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ListFormatPipe } from './list/list-format.pipe';
 
@@ -37,7 +38,7 @@ import { ListFormatPipe } from './list/list-format.pipe';
     FormsModule,
     HttpModule
   ],
-  providers: [LicenseService, ConfigurationService],
+  providers: [LicenseService, ConfigurationService, LoaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
