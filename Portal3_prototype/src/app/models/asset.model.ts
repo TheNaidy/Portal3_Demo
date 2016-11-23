@@ -2,7 +2,7 @@
 import { Attribute, DataType } from './attribute';
 
 export class AssetAttributes {
-    public static id: Attribute = { name: 'id', dataType: DataType.number  };
+    public static id: Attribute = { name: 'id', dataType: DataType.guid  };
     public static assetName: Attribute = { name: 'name', dataType: DataType.string };
     public static code: Attribute = { name: 'code', dataType: DataType.string };
     public static status: Attribute = { name: 'status', dataType: DataType.string };
@@ -15,7 +15,6 @@ export class AssetAttributes {
     public static officialArea: Attribute = { name: 'officialArea', dataType: DataType.date };
     public static officialAreaUnit: Attribute = { name: 'officialAreaUnit', dataType: DataType.string };
 }
-
 
 export class AssetModel {
 

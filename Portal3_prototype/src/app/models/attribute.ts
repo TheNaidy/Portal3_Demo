@@ -2,7 +2,8 @@ export enum DataType {
     string,
     date,
     number,
-    boolean
+    boolean,
+    guid
 };
 
 export class Attribute {
