@@ -24,19 +24,15 @@ export class AssetPortfolioComponent implements OnInit {
   listConfiguration: ListConfiguration;
   pageConfiguration: PageConfiguration;
   data: Array<AssetModel>;
-  constructor(public _configurationService:ConfigurationService, private _licenseService: LicenseService) { 
-    
-  }
+  constructor(public _configurationService:ConfigurationService, private _licenseService: LicenseService) {  }
 
   ngOnInit() {
     this.pageConfiguration = this._configurationService.GetPageConfiguration(1);
-    this.listConfiguration = this.pageConfiguration.ListConfiguration;     
-    console.log(this.listConfiguration);
-        
-    this._licenseService.getLicensesBySearch('be746ef0-a17d-4f2b-ac3e-1f642ba9961e')
+    this.listConfiguration = this.pageConfiguration.ListConfiguration;
+
+    this._licenseService.getLicensesBySearch('be746ef0-a17d-4f2b-ac3e-1f642ba9961e', this.listConfiguration.attributes)
       .subscribe(data => {
-        this.data = data; 
-        console.log(this.data);       
+        this.data = data;
       });
   }
 

@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import { environment } from '../../environments/environment';
 import { AssetModel, AssetAttributes } from '../models/asset.model';
 import { LoaderService } from '././loader.service';
+import { Attribute } from '../models/attribute';
 
 @Injectable()
 export class LicenseService {
@@ -13,7 +14,7 @@ export class LicenseService {
   private headers: Headers;
   private options: RequestOptions;
 
-  constructor (public _http: Http, public loaderService: LoaderService) {
+  constructor(public _http: Http, public loaderService: LoaderService) {
     if (environment.production) {
       this.baseURL = location.host + location.pathname + 'api';
     } else {
@@ -28,12 +29,17 @@ export class LicenseService {
     });
   }
 
-  public getLicensesBySearch(licenseSearchID: any): Observable<AssetModel[]> {
+  public getLicensesBySearch(licenseSearchID: any, attributes: Array<Attribute>): Observable<AssetModel[]> {
 
     let licensesearchURL = this.baseURL + '/licenses/executesearch';
     let self = this;
+    let fields: Array<string> = new Array();
+    let body: any = new Object();
 
-    return this._http.post(licensesearchURL, '', this.options)
+    attributes.map(attribute => { fields.push(attribute.name); });
+    body.fields = fields;
+
+    return this._http.post(licensesearchURL, body, this.options)
       .map(res => {
         let data = res.json();
         data.map(function (license: AssetModel) {
