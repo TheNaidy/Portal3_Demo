@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FilterBoxComponent } from './filter.box';
 import { FilterPipe } from './filter.pipe';
 import { FilterService } from './filter.service';
@@ -11,7 +11,7 @@ import { FilterService } from './filter.service';
   providers: [FilterService],
   pipes: [FilterPipe]
 })
-export class FilterComponent implements OnInit {
+export class FilterComponent {
   @Output() filterTextChanged: EventEmitter<any> = new EventEmitter<any>();
   title = 'Testing Licenses';
   licenses: string[];
@@ -19,11 +19,6 @@ export class FilterComponent implements OnInit {
   constructor(filterService: FilterService) {
     this.licenses = filterService.getLicenses();
   }
-
-  ngOnInit() {
-
-  }
-
   public onFilterTextChange(searchString: string) {
     this.filterTextChanged.emit({ value: searchString });
   }

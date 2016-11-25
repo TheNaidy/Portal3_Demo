@@ -1,2 +1,2 @@
-<app-filter (filterTextChanged)="onFilterTexChange($event.value)"></app-filter>
-<app-list [data]="data" [configuration]="configuration" (rowClicked)="rowClick($event)"></app-list>
+<app-filter (filterTextChanged)="onFilterTextChange($event.value)"></app-filter>
+<div *ngIf= 'data'><app-list [data]="data | filterpipe : term : configuration" [configuration]="configuration" (rowClicked)="rowClick($event)"></app-list></div>
