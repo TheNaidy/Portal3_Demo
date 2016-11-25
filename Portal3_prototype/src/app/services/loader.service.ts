@@ -15,10 +15,6 @@ export class LoaderService {
       if (attributes.hasOwnProperty(attributeName)) {
         let attribute: Attribute = attributes[attributeName];
 
-        if (!dataItem.hasOwnProperty(attributeName)) {
-          dataItem[attributeName] = '';
-        }
-
         switch (attribute.dataType) {
           case DataType.date:
             dataItem[attribute.name] = new Date(dataItem[attribute.name]);
