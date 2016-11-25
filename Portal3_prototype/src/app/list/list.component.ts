@@ -69,7 +69,7 @@ export class ListComponent implements OnChanges {
   }
 
   public columnStyle(column: ColumnConfiguration) {
-    let styles = new Object({});
+    let styles: any = new Object({});
 
     switch (column.horizontalAlignment || '') {
       case HorizontalAlign.left:
