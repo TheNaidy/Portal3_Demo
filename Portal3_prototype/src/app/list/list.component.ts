@@ -3,8 +3,8 @@ import { ListConfiguration } from '../list-configuration';
 import { ListRowClick } from '../list-row-click';
 import { FilterPipe } from '../filter/filter.pipe';
 import { LicenseService } from '../services/license.service';
-import { ColumnConfiguration } from '../column-configuration';
-import { Attribute } from '../models/attribute';
+import { ColumnConfiguration, HorizontalAlign, VerticalAlign } from '../column-configuration';
+import { Attribute, DataType } from '../models/attribute';
 
 @Component({
   selector: 'app-list',
@@ -27,7 +27,7 @@ export class ListComponent implements OnChanges {
     for (let propName in changes) {
       if (propName === 'data') {
         if (changes['data'].currentValue) {
-            this.sortData(this.configuration.sortAttribute);
+          this.sortData(this.configuration.sortAttribute);
         }
       }
     }
@@ -64,5 +64,45 @@ export class ListComponent implements OnChanges {
       }
       return 0;
     });
+  }
+
+  public columnStyle(column: ColumnConfiguration) {
+    let styles = new Object({});
+
+    switch (column.horizontalAlignment || '') {
+      case HorizontalAlign.left:
+        styles.textAlign = 'left';
+        break;
+      case HorizontalAlign.right:
+        styles.textAlign = 'right';
+        break;
+      case HorizontalAlign.center:
+        styles.textAlign = 'center';
+        break;
+      default:
+        if (column.attribute.dataType === DataType.number) { styles.textAlign = 'right' };
+    }
+
+switch (column.verticalAlignment || '') {
+      case VerticalAlign.top:
+        styles.verticalAlign = 'top';
+        break;
+      case VerticalAlign.middle:
+        styles.verticalAlign = 'middle';
+        break;
+      case VerticalAlign.bottom:
+        styles.verticalAlign = 'bottom';
+        break;
+    }
+
+    return styles;
+  }
+
+  public columnTooltip(column: ColumnConfiguration, dataItem: any) {
+    if (column.tooltipAttribute) {
+      return dataItem[column.tooltipAttribute.name];
+    } else {
+      return '';
+    }
   }
 }

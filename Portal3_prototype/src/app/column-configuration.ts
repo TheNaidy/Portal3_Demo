@@ -1,7 +1,23 @@
 import { Attribute } from './models/attribute';
 
 export class ColumnConfiguration {
-    constructor(public headerText: string, public attribute: Attribute , public command: string) {
+    public command: string = '';
+    public verticalAlignment: VerticalAlign;
+    public horizontalAlignment: HorizontalAlign;
 
+    public tooltipAttribute: Attribute;
+    constructor(public headerText: string, public attribute: Attribute) {
     }
 }
+
+export enum VerticalAlign {
+    top,
+    middle,
+    bottom
+};
+
+export enum HorizontalAlign {
+    left,
+    center,
+    right
+};

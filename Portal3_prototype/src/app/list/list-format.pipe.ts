@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DataType } from '../models/attribute';
-import { environment } from '../../environments/environment';
 
 @Pipe({
   name: 'listFormat'
