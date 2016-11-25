@@ -27,7 +27,7 @@ export class ListComponent implements OnChanges {
     for (let propName in changes) {
       if (propName === 'data') {
         if (changes['data'].currentValue) {
-            this.sortData(this.configuration.sortAttribute);
+            this.sortData(this.configuration.sortAttribute,false);
         }
       }
     }
@@ -44,16 +44,18 @@ export class ListComponent implements OnChanges {
   }
 
   headerClick(column: ColumnConfiguration) {
-    this.sortData(column.attribute);
+    this.sortData(column.attribute,true);
   }
 
-  private sortData(sortAttribute: Attribute) {
+  private sortData(sortAttribute: Attribute, autoSortFlip: boolean) {
+  if (autoSortFlip){
     if (this.configuration.sortAttribute === sortAttribute) {
       this.sortDirection *= -1;
     } else {
       this.configuration.sortAttribute = sortAttribute;
       this.sortDirection = 1;
     }
+  }
 
     this.data.sort((rowA, rowB) => {
       if (rowA[this.configuration.sortAttribute.name] < rowB[this.configuration.sortAttribute.name]) {

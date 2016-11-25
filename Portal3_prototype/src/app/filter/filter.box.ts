@@ -7,12 +7,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
     `
 })
 export class FilterBoxComponent {
-    @Output() update = new EventEmitter();
-
-
-    ngOnInIt() {
-        this.update.emit('');
-    }
+    @Output() update = new EventEmitter()
 
     public keyPressed(searchString: string) {
         this.update.emit({ value: searchString });
