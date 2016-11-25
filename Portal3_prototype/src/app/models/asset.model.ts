@@ -12,7 +12,7 @@ export class AssetAttributes {
     public static dateExpired: Attribute = { name: 'dateExpired', dataType: DataType.date };
     public static commodities: Attribute = { name: 'commodities', dataType: DataType.string };
     public static parties: Attribute = { name: 'parties', dataType: DataType.string };
-    public static officialArea: Attribute = { name: 'officialArea', dataType: DataType.date };
+    public static officialArea: Attribute = { name: 'officialArea', dataType: DataType.number };
     public static officialAreaUnit: Attribute = { name: 'officialAreaUnit', dataType: DataType.string };
 }
 
