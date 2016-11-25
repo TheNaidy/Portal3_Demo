@@ -1,4 +1,5 @@
 <div *ngIf="configuration" class="table-responsive" style="overflow: visible">
+    
     <table class="table borderless-first-row">
         <tr>
             <th *ngFor="let column of configuration.columns" (click)="headerClick(column)">{{column.headerText}}<span *ngIf="column.attribute == configuration.sortAttribute" class="caret" [ngClass]="{'caret-reversed': sortDirection == -1}"></span>
@@ -7,7 +8,7 @@
         <tr *ngFor="let row of data" (click)="rowClick(row, $event);" class="row-interactive">
             <td *ngFor="let column of configuration.columns" [ngSwitch]="column.command">
                 <span *ngSwitchCase="''">{{row[column.attribute.name] | listFormat: column.attribute.dataType}}</span>
-                <a *ngSwitchDefault href="" (click)="commandClick(row, column.command, $event);$event.stopPropagation();">{{row[column.attribute.name]}}</a>
+                <a *ngSwitchDefault routerLink="/asset" routerLinkActive="active" href="" (click)="commandClick(row, column.command, $event);$event.stopPropagation();">{{row[column.attribute.name]}}</a>
             </td>
         </tr>
     </table>

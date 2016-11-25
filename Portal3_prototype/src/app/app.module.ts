@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule, Routes } from '@angular/router';
+// import { RoutingModule } from './routing/routing.module';
 
 import { AppComponent } from './app.component';
 import { AssetPortfolioComponent } from './asset-portfolio/asset-portfolio.component';
@@ -19,26 +21,35 @@ import { LoaderService } from './services/loader.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ListFormatPipe } from './list/list-format.pipe';
 
+const appRoutes: Routes = [
+    { path: '', component: DashboardComponent },
+    { path: 'assetPortfolio', component: AssetPortfolioComponent },
+    { path: 'asset', component: AssetDetailsComponent }
+
+];
+
 @NgModule({
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    RouterModule.forRoot(appRoutes)
+  ],
   declarations: [
     AppComponent,
     AssetPortfolioComponent,
-    AssetDetailsComponent, ListComponent,
+    AssetDetailsComponent,
+    DashboardComponent,
+    ListComponent,
     FilterableListComponent,
     FilterComponent,
     HeaderComponent,
     NavBarComponent,
     MapComponent,
-    DashboardComponent,
-    ListFormatPipe,
     ListFormatPipe
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule
   ],
   providers: [LicenseService, ConfigurationService, LoaderService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
