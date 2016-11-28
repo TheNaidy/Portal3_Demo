@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule, Routes} from '@angular/router'
 
 import { AppComponent } from './app.component';
 import { AssetPortfolioComponent } from './asset-portfolio/asset-portfolio.component';
@@ -18,6 +19,13 @@ import { ConfigurationService } from './services/configuration.service';
 import { LoaderService } from './services/loader.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ListFormatPipe } from './list/list-format.pipe';
+
+const appRoutes: Routes = [
+  { path: '', component: DashboardComponent },
+  { path: 'assetDetails', component: AssetDetailsComponent },
+  { path: 'assetPortfolio', component: AssetPortfolioComponent }
+  
+];
 
 @NgModule({
   declarations: [
@@ -36,7 +44,8 @@ import { ListFormatPipe } from './list/list-format.pipe';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [LicenseService, ConfigurationService, LoaderService],
   bootstrap: [AppComponent]
