@@ -1,10 +1,12 @@
 <div *ngIf="configuration" class="table-responsive" style="overflow: visible">
     <table class="table borderless-first-row">
         <tr>
+            <th *ngIf="configuration.selectable" class="select-column"><a (click)="allClick($event)" href="">All</a></th>
             <th *ngFor="let column of configuration.columns" (click)="headerClick(column)" [ngStyle]="columnStyle(column)">{{column.headerText}}<span *ngIf="column.attribute == configuration.sortAttribute" class="caret" [ngClass]="{'caret-reversed': sortDirection == -1}"></span>
             </th>
         </tr>
         <tr *ngFor="let row of data" (click)="rowClick(row, $event);" class="row-interactive">
+            <td *ngIf="configuration.selectable" class="select-column"><input #select type="checkbox" (click)="$event.stopPropagation()" [(ngModel)]="row.selected" /></td>
             <td *ngFor="let column of configuration.columns" [ngSwitch]="column.command" [ngStyle]="columnStyle(column)">
                 <span *ngSwitchCase="''" [title]="columnTooltip(column, row)">{{row[column.attribute.name] | listFormat: column.attribute.dataType}}</span>
                 <a *ngSwitchDefault routerLink="/assetDetails" routerLinkActive="active"(click)="commandClick(row, column.command, $event);$event.stopPropagation();">{{row[column.attribute.name]}}</a>

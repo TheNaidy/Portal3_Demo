@@ -48,6 +48,7 @@ export class ConfigurationService {
     this.pageConfiguration.ListConfiguration.columns = columns;
 
     this.pageConfiguration.ListConfiguration.sortAttribute = AssetAttributes.code;
+    this.pageConfiguration.ListConfiguration.selectable = true;
 
     return this.pageConfiguration;
 

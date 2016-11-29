@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ViewChildren } from '@angular/core';
 import { ListConfiguration } from '../list-configuration';
 import { ListRowClick } from '../list-row-click';
 import { FilterPipe } from '../filter/filter.pipe';
@@ -16,6 +16,7 @@ export class ListComponent implements OnChanges {
   @Input() configuration: ListConfiguration;
   @Input() data: Array<any>;
   @Output() rowClicked: EventEmitter<ListRowClick> = new EventEmitter<ListRowClick>();
+  @ViewChildren('select') checkboxes;
 
   private sortDirection: number = -1;
 
@@ -82,7 +83,7 @@ export class ListComponent implements OnChanges {
         styles.textAlign = 'center';
         break;
       default:
-        if (column.attribute.dataType === DataType.number) { styles.textAlign = 'right' };
+        if (column.attribute.dataType === DataType.number) { styles.textAlign = 'right'; };
     }
 
     switch (column.verticalAlignment || '') {
@@ -107,4 +108,20 @@ export class ListComponent implements OnChanges {
       return '';
     }
   }
+
+  public get selectedRows(): Array<any> {
+    return this.data.filter(row => row.selected);
+  }
+
+  public allClick(event: Event) {
+    event.preventDefault();
+    
+    if (this.selectedRows.length === this.data.length) {
+      this.data.map(row => row.selected = false);
+    } else {
+      this.data.map(row => row.selected = true);
+    }
+
+  }
 }
+

@@ -8,3 +8,7 @@ th:hover{
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
 }
+
+.select-column{
+  text-align: center;
+}
