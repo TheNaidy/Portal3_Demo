@@ -38,7 +38,7 @@ export class AssetPortfolioComponent implements OnInit {
 
   public assetClicked(event: ListRowClick) {
     switch (event.command) {
-      case '': alert(event.row.Code + 'row clicked');
+      case '': alert('row clicked');
       break;
       case 'name_clicked': alert(event.row.Name + ' clicked');
       break;

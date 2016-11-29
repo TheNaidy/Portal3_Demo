@@ -46,7 +46,6 @@ export class LicenseService {
           self.loaderService.loadDataModel(license, AssetAttributes);
           return license;
         });
-        console.log(data);
         return data;
       });
   }
