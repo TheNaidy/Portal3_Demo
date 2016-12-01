@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/rx';
 import 'rxjs/add/operator/map';
 import { environment } from '../../environments/environment';
-import { AssetSearchModel } from '../models/assetsearch.model';
-import { AssetModel } from '../models/asset.model';
+import { AssetModel, AssetAttributes } from '../models/asset.model';
+import { LoaderService } from '././loader.service';
+import { Attribute } from '../models/attribute';
 
 @Injectable()
 export class LicenseService {
@@ -13,7 +14,7 @@ export class LicenseService {
   private headers: Headers;
   private options: RequestOptions;
 
-  constructor(public _http: Http) {
+  constructor(public _http: Http, public loaderService: LoaderService) {
     if (environment.production) {
       this.baseURL = location.host + location.pathname + 'api';
     } else {
@@ -28,14 +29,25 @@ export class LicenseService {
     });
   }
 
-  getLicensesBySearch(licenseSearchID: any): Observable<AssetSearchModel[]> {
-    console.log('getLicensesBySearch');
-    
-     let licensesearchURL = this.baseURL + '/licensesearch/' + licenseSearchID;
-    // return Promise.resolve(this._http.get(licensesearchURL, this.options));
+  public getLicensesBySearch(licenseSearchID: any, attributes: Array<Attribute>): Observable<AssetModel[]> {
 
-       return this._http.get(licensesearchURL, this.options)
-         .map(res => res.json());
+    let licensesearchURL = this.baseURL + '/licenses/executesearch';
+    let self = this;
+    let fields: Array<string> = new Array();
+    let body: any = new Object();
+
+    attributes.map(attribute => { fields.push(attribute.name); });
+    body.fields = fields;
+
+    return this._http.post(licensesearchURL, body, this.options)
+      .map(res => {
+        let data = res.json();
+        data.map(function (license: AssetModel) {
+          self.loaderService.loadDataModel(license, AssetAttributes);
+          return license;
+        });
+        return data;
+      });
   }
 
   getLicense(licenseID: any): Observable<AssetModel> {

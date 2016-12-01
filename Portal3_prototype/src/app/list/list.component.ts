@@ -1,10 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ViewChildren } from '@angular/core';
 import { ListConfiguration } from '../list-configuration';
 import { ListRowClick } from '../list-row-click';
 import { FilterPipe } from '../filter/filter.pipe';
 import { LicenseService } from '../services/license.service';
-import { ColumnConfiguration } from '../column-configuration';
-import { AssetSearchModel } from '../models/assetsearch.model';
+import { ColumnConfiguration, HorizontalAlign, VerticalAlign } from '../column-configuration';
+import { Attribute, DataType } from '../models/attribute';
 
 @Component({
   selector: 'app-list',
@@ -12,37 +12,26 @@ import { AssetSearchModel } from '../models/assetsearch.model';
   styleUrls: ['./list.component.css'],
   pipes: [FilterPipe]
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnChanges {
   @Input() configuration: ListConfiguration;
-  @Input() data: Array<AssetSearchModel>;
+  @Input() data: Array<any>;
   @Output() rowClicked: EventEmitter<ListRowClick> = new EventEmitter<ListRowClick>();
-  @Input() term;
+  @ViewChildren('select') checkboxes;
+
+  private sortDirection: number = -1;
 
   constructor(private licenseService: LicenseService) {
 
   }
 
-  ngOnInit() {
-
-    this.configuration = new ListConfiguration();
-    this.configuration.columns = [];
-    this.configuration.columns.push(new ColumnConfiguration('Status', 'Status', 'string', ''));
-    this.configuration.columns.push(new ColumnConfiguration('Code', 'Code', 'string', ''));
-    this.configuration.columns.push(new ColumnConfiguration('Name', 'Name', 'string', 'name_clicked'));
-
-    // this.licenseService.getLicensesBySearch('be746ef0-a17d-4f2b-ac3e-1f642ba9961e').then( observable => {
-    //   console.log('observable');
-    //   observable.subscribe(response => {
-    //     console.log(response.json());
-    //     this.data = response.json();
-    //   });
-    // });
-
-    this.licenseService.getLicensesBySearch('be746ef0-a17d-4f2b-ac3e-1f642ba9961e')
-      .subscribe(data => {
-        this.data = data;
-      });
-
+  ngOnChanges(changes: SimpleChanges) {
+    for (let propName in changes) {
+      if (propName === 'data') {
+        if (changes['data'].currentValue) {
+          this.sortData(this.configuration.sortAttribute, false);
+        }
+      }
+    }
   }
 
   commandClick(row: any, command: string, event: any) {
@@ -54,4 +43,85 @@ export class ListComponent implements OnInit {
   rowClick(row: any, event: any) {
     this.rowClicked.emit(new ListRowClick('', row));
   }
+
+  headerClick(column: ColumnConfiguration) {
+    this.sortData(column.attribute, true);
+  }
+
+  private sortData(sortAttribute: Attribute, autoSortFlip: boolean) {
+    if (autoSortFlip) {
+      if (this.configuration.sortAttribute === sortAttribute) {
+        this.sortDirection *= -1;
+      } else {
+        this.configuration.sortAttribute = sortAttribute;
+        this.sortDirection = 1;
+      }
+    }
+
+    this.data.sort((rowA, rowB) => {
+      if (rowA[this.configuration.sortAttribute.name] < rowB[this.configuration.sortAttribute.name]) {
+        return -1 * this.sortDirection;
+      }
+      if (rowA[this.configuration.sortAttribute.name] > rowB[this.configuration.sortAttribute.name]) {
+        return 1 * this.sortDirection;
+      }
+      return 0;
+    });
+  }
+
+  public columnStyle(column: ColumnConfiguration) {
+    let styles: any = new Object({});
+
+    switch (column.horizontalAlignment || '') {
+      case HorizontalAlign.left:
+        styles.textAlign = 'left';
+        break;
+      case HorizontalAlign.right:
+        styles.textAlign = 'right';
+        break;
+      case HorizontalAlign.center:
+        styles.textAlign = 'center';
+        break;
+      default:
+        if (column.attribute.dataType === DataType.number) { styles.textAlign = 'right'; };
+    }
+
+    switch (column.verticalAlignment || '') {
+      case VerticalAlign.top:
+        styles.verticalAlign = 'top';
+        break;
+      case VerticalAlign.middle:
+        styles.verticalAlign = 'middle';
+        break;
+      case VerticalAlign.bottom:
+        styles.verticalAlign = 'bottom';
+        break;
+    }
+
+    return styles;
+  }
+
+  public columnTooltip(column: ColumnConfiguration, dataItem: any) {
+    if (column.tooltipAttribute) {
+      return dataItem[column.tooltipAttribute.name];
+    } else {
+      return '';
+    }
+  }
+
+  public get selectedRows(): Array<any> {
+    return this.data.filter(row => row.selected);
+  }
+
+  public allClick(event: Event) {
+    event.preventDefault();
+    
+    if (this.selectedRows.length === this.data.length) {
+      this.data.map(row => row.selected = false);
+    } else {
+      this.data.map(row => row.selected = true);
+    }
+
+  }
 }
+

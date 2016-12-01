@@ -1,4 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { ListConfiguration } from '../list-configuration';
+import { DataType } from '../models/attribute';
 
 @Pipe({
     name: 'filterpipe',
@@ -6,7 +8,17 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 
 export class FilterPipe implements PipeTransform {
-    transform(value: any, [term]): string {
-        return value.filter((data) => data.firstName.startsWith(term));
+    transform(value: Array<any>, term: string, listConfig: ListConfiguration) {
+        let returnvalue =
+            value.filter((data) => {
+                let match: boolean = false;
+                for (let i = 0, len = listConfig.columns.length; i < len; i++) {
+                    if (listConfig.columns[i].attribute.dataType === DataType.string) {
+                        if (data[listConfig.columns[i].attribute.name].toLowerCase().startsWith(term.toLowerCase())) { match = true; }
+                    }
+                }
+                return match;
+            });
+        return returnvalue;
     }
 }
