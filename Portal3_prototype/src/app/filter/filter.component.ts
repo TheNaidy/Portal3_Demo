@@ -1,7 +1,6 @@
 
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FilterBoxComponent } from './filter.box';
-import { FilterDropdownComponent } from './filter.dropdown';
+import { Component, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-filter',

@@ -22,6 +22,7 @@ import { LoaderService } from './services/loader.service';
 import { ListFormatPipe } from './list/list-format.pipe';
 import { FilterPipe } from './filter/filter.pipe';
 import { FilterBoxComponent } from './filter/filter.box';
+import { FilterDropdownComponent } from './filter/filter.dropdown';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FilterBoxComponent } from './filter/filter.box';
     MapComponent,
     ListFormatPipe,
     FilterPipe,
-    FilterBoxComponent
+    FilterBoxComponent,
+    FilterDropdownComponent
   ],
   imports: [
     BrowserModule,
