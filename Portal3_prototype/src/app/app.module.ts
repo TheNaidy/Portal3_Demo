@@ -20,6 +20,8 @@ import { MapComponent } from './map/map.component';
 import { ConfigurationService } from './services/configuration.service';
 import { LoaderService } from './services/loader.service';
 import { ListFormatPipe } from './list/list-format.pipe';
+import { FilterPipe } from './filter/filter.pipe';
+import { FilterBoxComponent } from './filter/filter.box';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { ListFormatPipe } from './list/list-format.pipe';
     HeaderComponent,
     NavBarComponent,
     MapComponent,
-    ListFormatPipe
+    ListFormatPipe,
+    FilterPipe,
+    FilterBoxComponent
   ],
   imports: [
     BrowserModule,

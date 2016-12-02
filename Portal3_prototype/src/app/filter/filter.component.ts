@@ -1,15 +1,14 @@
+
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FilterBoxComponent } from './filter.box';
 import { FilterPipe } from './filter.pipe';
 import { FilterService } from './filter.service';
 
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.css'],
-  directives: [FilterBoxComponent],
+  styleUrls: ['./filter.component.css'],  
   providers: [FilterService],
-  pipes: [FilterPipe]
+
 })
 export class FilterComponent {
   @Output() filterTextChanged: EventEmitter<any> = new EventEmitter<any>();

@@ -1,13 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ListConfiguration } from '../list-configuration';
 import { ListRowClick } from '../list-row-click';
-import { FilterPipe} from '../filter/filter.pipe';
 
 @Component({
   selector: 'app-filterable-list',
   templateUrl: './filterable-list.component.html',
-  styleUrls: ['./filterable-list.component.css'],
-   pipes: [FilterPipe]
+  styleUrls: ['./filterable-list.component.css']
 })
 export class FilterableListComponent implements OnInit {
   @Input() configuration: ListConfiguration;
