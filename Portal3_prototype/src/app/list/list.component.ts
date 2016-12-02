@@ -9,8 +9,7 @@ import { Attribute, DataType } from '../models/attribute';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css'],
-  pipes: [FilterPipe]
+  styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnChanges {
   @Input() configuration: ListConfiguration;
