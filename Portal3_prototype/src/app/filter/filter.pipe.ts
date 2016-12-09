@@ -11,10 +11,10 @@ export class FilterPipe implements PipeTransform {
     transform(value: Array<any>, term: string, listConfig: ListConfiguration) {
         let returnvalue =
             value.filter((data) => {
-                let match: boolean = false;
+                let match: Boolean = false;
                 for (let i = 0, len = listConfig.columns.length; i < len; i++) {
                     if (listConfig.columns[i].attribute.dataType === DataType.string) {
-                        if (data[listConfig.columns[i].attribute.name].toLowerCase().startsWith(term.toLowerCase())) { match = true; }
+                        if (data[listConfig.columns[i].attribute.name].toLowerCase().includes(term.toLowerCase())) { match = true; }
                     }
                 }
                 return match;
