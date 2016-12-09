@@ -17,7 +17,7 @@ export class ListComponent implements OnChanges {
   @Output() rowClicked: EventEmitter<ListRowClick> = new EventEmitter<ListRowClick>();
   @ViewChildren('select') checkboxes;
 
-  private sortDirection: number = -1;
+  private sortDirection: number = 1;
 
   constructor(private licenseService: LicenseService) {
 
